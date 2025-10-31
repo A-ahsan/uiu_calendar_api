@@ -84,9 +84,29 @@ jobs:
 
       - name: Auto-merge PR (if created)
         if: ${{ steps.skip_check.outputs.skip == 'false' && steps.create_pr.outputs.pull-request-number }}
-        uses: peter-evans/merge-pull-request@v2
-        with:
-          token: ${{ secrets.ACTIONS_PUSH_PAT || github.token }}
-          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
-          merge-method: squash
-          commit-title: "Automated merge: calendars.json"
+        env:
+          MERGE_TOKEN: ${{ secrets.ACTIONS_PUSH_PAT || github.token }}
+          PR_NUMBER: ${{ steps.create_pr.outputs.pull-request-number }}
+        run: |
+          echo "Attempting to merge PR #${PR_NUMBER}"
+          if [ -z "${PR_NUMBER}" ]; then
+            echo "No PR number provided, skipping merge."
+            exit 0
+          fi
+          # Call GitHub REST API to merge the pull request using the provided token
+          api_url="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/merge"
+          payload=$(printf '{"merge_method":"squash","commit_title":"Automated merge: calendars.json"}')
+          http_status=$(curl -s -o /tmp/merge_resp -w "%{http_code}" -X PUT \
+            -H "Authorization: token ${MERGE_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "${api_url}" \
+            -d "${payload}")
+          echo "Merge API returned HTTP ${http_status}"
+          cat /tmp/merge_resp || true
+          if [ "$http_status" -ge 200 -a "$http_status" -lt 300 ]; then
+            echo "PR merged successfully"
+            exit 0
+          else
+            echo "Failed to merge PR (HTTP ${http_status}). See response above for details."
+            exit 1
+          fi
