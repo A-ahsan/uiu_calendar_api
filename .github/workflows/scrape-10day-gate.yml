@@ -55,6 +55,15 @@ jobs:
           date -u +"%Y-%m-%dT%H:%M:%SZ" > web/.last_scrape
           git add web/.last_scrape
 
+      - name: Prepare commit
+        if: ${{ steps.skip_check.outputs.skip == 'false' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # ensure the generated JSON is staged so the create-pull-request action can pick it up
+          git add web/calendars.json web/.last_scrape || true
+          echo "Staged files:" && git status --porcelain || true
+
       - name: Create Pull Request (if changes)
         if: ${{ steps.skip_check.outputs.skip == 'false' }}
         uses: peter-evans/create-pull-request@v5
