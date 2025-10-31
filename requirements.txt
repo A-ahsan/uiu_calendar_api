@@ -3,3 +3,5 @@ uvicorn
 requests
 beautifulsoup4
 pdfplumber
+PyPDF2
+pyspellchecker
