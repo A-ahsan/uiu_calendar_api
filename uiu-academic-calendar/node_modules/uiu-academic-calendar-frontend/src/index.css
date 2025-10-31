@@ -120,7 +120,7 @@ body {
 
 .expand-wrap { overflow: hidden; transition: max-height 360ms cubic-bezier(.2,.8,.2,1), opacity 240ms ease; opacity: 1; }
 .expand-wrap.closed { max-height: 0; opacity: 0; }
-.expand-wrap.open { max-height: 2000px; opacity: 1; }
+.expand-wrap.open { max-height: none; opacity: 1; overflow-y: auto; }
 
 .event-card { transform: translateY(6px); opacity: 0; animation: event-fade-up 420ms ease forwards; }
 @keyframes event-fade-up {
