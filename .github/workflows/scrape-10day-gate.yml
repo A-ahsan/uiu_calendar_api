@@ -1,0 +1,68 @@
+name: Scrape calendars (10-day gate)
+
+on:
+  schedule:
+    # Run daily at 03:00 UTC; the job itself will only perform scraping when >=10 days
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - id: skip_check
+        name: Check last run (skip if < 10 days)
+        run: |
+          THRESH_DAYS=10
+          FILE=web/.last_scrape
+          if [ -f "$FILE" ]; then
+            last=$(cat "$FILE")
+            last_ts=$(date -u -d "$last" +%s 2>/dev/null || echo 0)
+            now_ts=$(date -u +%s)
+            age=$(( (now_ts - last_ts) / 86400 ))
+            echo "Last run was $age days ago"
+            if [ "$age" -lt "$THRESH_DAYS" ]; then
+              echo "skip=true" >> $GITHUB_OUTPUT
+              echo "Skipping scraper because last run is less than $THRESH_DAYS days ago" >&2
+              exit 0
+            fi
+          fi
+          echo "skip=false" >> $GITHUB_OUTPUT
+
+      - name: Run scraper
+        if: ${{ steps.skip_check.outputs.skip == 'false' }}
+        run: python scrape_uiu_calendar.py
+
+      - name: Record timestamp
+        if: ${{ steps.skip_check.outputs.skip == 'false' }}
+        run: |
+          mkdir -p web
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > web/.last_scrape
+          git add web/.last_scrape
+
+      - name: Commit and push
+        if: ${{ steps.skip_check.outputs.skip == 'false' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/calendars.json web/.last_scrape || true
+          git commit -m "Automated update: calendars.json" || echo "no changes to commit"
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          git push origin "HEAD:$BRANCH" || echo "git push failed (branch protection or permissions)."
