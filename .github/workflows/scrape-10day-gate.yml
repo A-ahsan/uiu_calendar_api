@@ -68,8 +68,9 @@ jobs:
         if: ${{ steps.skip_check.outputs.skip == 'false' }}
         uses: peter-evans/create-pull-request@v5
         with:
-          # Use default GITHUB_TOKEN; this action will create a branch and open a PR when there are changes
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer a user PAT stored in ACTIONS_PUSH_PAT (needed if branch protection blocks GITHUB_TOKEN pushes)
+          # If you haven't created the secret yet, create a Personal Access Token with 'repo' scope
+          token: ${{ secrets.ACTIONS_PUSH_PAT }}
           commit-message: "Automated update: calendars.json"
           branch: "auto/scrape-update-${{ github.run_number }}"
           title: "Automated update: calendars.json"
