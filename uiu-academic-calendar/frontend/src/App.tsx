@@ -22,19 +22,15 @@ export default function App() {
   }, [dark])
 
   useEffect(() => {
-  async function load() {
+    async function load() {
       try {
-  // Use VITE_API_BASE when set (for local dev), otherwise use relative path so Vercel serverless function is used in production
-  const API_BASE = (import.meta as any).env?.VITE_API_BASE ?? ''
-  const res = await axios.get(`${API_BASE}/api/calendars`)
-        // backend may return either an array or an object { data: [...] } or { count, data }
+        // Fetch from the static calendars.json file in the public folder
+        const res = await axios.get('/calendars.json')
+        // The JSON file contains an array of calendars directly
         const payload = res.data
         if (Array.isArray(payload)) {
           setCalendars(payload)
-        } else if (payload && Array.isArray(payload.data)) {
-          setCalendars(payload.data)
         } else {
-          // fallback: try to extract nested array, otherwise set empty
           setCalendars([])
         }
       } catch (e) {
