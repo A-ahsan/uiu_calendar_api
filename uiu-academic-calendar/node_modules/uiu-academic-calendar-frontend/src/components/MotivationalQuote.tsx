@@ -127,8 +127,8 @@ export default function MotivationalQuote() {
     // Show after a short delay
     const showTimer = setTimeout(() => setShow(true), 800)
     
-    // Hide after 6 seconds
-    const hideTimer = setTimeout(() => setShow(false), 7000)
+    // Auto-hide after 8 seconds (user can also close manually)
+    const hideTimer = setTimeout(() => setShow(false), 8800)
     
     return () => {
       clearTimeout(showTimer)
@@ -136,13 +136,25 @@ export default function MotivationalQuote() {
     }
   }, [])
 
+  const handleClose = () => {
+    setShow(false)
+  }
+
   if (!show) return null
 
   return (
     <div className="quote-popup">
       <div className="quote-content">
-        <div className="quote-icon">✨</div>
+        <div className="quote-icon">💡</div>
         <p className="quote-text">{quote}</p>
+        <button 
+          onClick={handleClose}
+          className="quote-close"
+          aria-label="Close quote"
+          title="Close"
+        >
+          ×
+        </button>
       </div>
     </div>
   )
