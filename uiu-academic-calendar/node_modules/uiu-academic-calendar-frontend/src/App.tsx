@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ThemeToggle from './components/ThemeToggle'
 import CalendarList from './components/CalendarList'
+import MotivationalQuote from './components/MotivationalQuote'
 
 export type Calendar = {
   title: string
@@ -68,6 +69,9 @@ export default function App() {
           Created by ViPeR
         </footer>
       </div>
+      
+      {/* Motivational quote popup */}
+      <MotivationalQuote />
     </div>
   )
 }

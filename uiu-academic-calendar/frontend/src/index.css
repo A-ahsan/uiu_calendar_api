@@ -127,7 +127,78 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* Motivational Quote Popup */
+.quote-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 420px;
+  z-index: 9999;
+  animation: quote-slide-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes quote-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.quote-content {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff9f4a 100%);
+  color: white;
+  padding: 18px 22px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(255, 122, 24, 0.4);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.quote-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.2) rotate(10deg); opacity: 0.8; }
+}
+
+.quote-text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .quote-popup {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    max-width: none;
+  }
+  
+  .quote-content {
+    padding: 16px 18px;
+  }
+  
+  .quote-text {
+    font-size: 13px;
+  }
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .site-title, .card, .expand-wrap, .event-card { animation: none !important; transition: none !important; }
+  .quote-popup { animation: none !important; }
+  .quote-icon { animation: none !important; }
 }
