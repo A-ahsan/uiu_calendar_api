@@ -7,8 +7,8 @@ export default function CalendarList({ calendars, logoUrl }: { calendars: Calend
 
   return (
     <div className="space-y-6">
-      {calendars.map((c, idx) => (
-        <CalendarCard key={idx} calendar={c} logoUrl={logoUrl} />
+      {calendars.map((c) => (
+        <CalendarCard key={c.url} calendar={c} logoUrl={logoUrl} />
       ))}
     </div>
   )
