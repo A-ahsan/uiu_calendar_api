@@ -61,7 +61,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # ensure the generated JSON is staged so the create-pull-request action can pick it up
-          git add web/calendars.json web/.last_scrape || true
+          # copy the generated JSON into the frontend public folder so the deployed site includes it
+          mkdir -p uiu-academic-calendar/frontend/public || true
+          cp web/calendars.json uiu-academic-calendar/frontend/public/calendars.json || true
+          # stage both the canonical JSON and the frontend copy
+          git add web/calendars.json web/.last_scrape uiu-academic-calendar/frontend/public/calendars.json || true
           echo "Staged files:" && git status --porcelain || true
 
       - id: create_pr
