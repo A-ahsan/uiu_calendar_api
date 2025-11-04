@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Calendar } from '../App'
 import { PdfIcon, ChevronRight } from './icons'
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 export default function CalendarCard({ calendar, logoUrl }: { calendar: Calendar; logoUrl?: string }) {
   const [open, setOpen] = useState(false)
@@ -116,6 +118,85 @@ export default function CalendarCard({ calendar, logoUrl }: { calendar: Calendar
 
   const shortTitle = simplifyTitle(displayTitle)
 
+  // Function to generate and download PDF from calendar data
+  const downloadPDF = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    
+    const doc = new jsPDF()
+    const pageWidth = doc.internal.pageSize.getWidth()
+    
+    // Title
+    doc.setFontSize(16)
+    doc.setFont('helvetica', 'bold')
+    doc.text(displayTitle, pageWidth / 2, 20, { align: 'center' })
+    
+    // Header text
+    let yPos = 35
+    if (header && header.length > 0) {
+      doc.setFontSize(10)
+      doc.setFont('helvetica', 'normal')
+      header.forEach(h => {
+        const lines = doc.splitTextToSize(h, pageWidth - 40)
+        doc.text(lines, 20, yPos)
+        yPos += lines.length * 5
+      })
+      yPos += 5
+    }
+    
+    // Events table
+    if (rows && rows.length > 0) {
+      const tableData = rows.map(r => [r.date, r.desc])
+      
+      autoTable(doc, {
+        startY: yPos,
+        head: [['Date', 'Event']],
+        body: tableData,
+        theme: 'grid',
+        headStyles: { fillColor: [246, 139, 31], textColor: 255, fontStyle: 'bold' },
+        styles: { fontSize: 9, cellPadding: 4 },
+        columnStyles: {
+          0: { cellWidth: 50, fontStyle: 'bold' },
+          1: { cellWidth: 'auto' }
+        },
+        margin: { left: 20, right: 20 }
+      })
+      
+      yPos = (doc as any).lastAutoTable.finalY + 10
+    }
+    
+    // Footer text
+    if (footer && footer.length > 0) {
+      doc.setFontSize(9)
+      doc.setFont('helvetica', 'normal')
+      footer.forEach(f => {
+        const lines = doc.splitTextToSize(f, pageWidth - 40)
+        doc.text(lines, 20, yPos)
+        yPos += lines.length * 4
+      })
+    }
+    
+    // Notes section
+    if (calendar.notes && calendar.notes.length > 0) {
+      yPos += 5
+      doc.setFontSize(11)
+      doc.setFont('helvetica', 'bold')
+      doc.text('Important Notes:', 20, yPos)
+      yPos += 7
+      
+      doc.setFontSize(9)
+      doc.setFont('helvetica', 'normal')
+      calendar.notes.forEach(note => {
+        const lines = doc.splitTextToSize('• ' + note, pageWidth - 40)
+        doc.text(lines, 20, yPos)
+        yPos += lines.length * 4 + 2
+      })
+    }
+    
+    // Generate filename from title
+    const filename = shortTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.pdf'
+    doc.save(filename)
+  }
+
   return (
     <article className="card rounded-lg overflow-hidden">
       {/* Collapsed header bar (orange) - click to toggle */}
@@ -135,18 +216,15 @@ export default function CalendarCard({ calendar, logoUrl }: { calendar: Calendar
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Download button on right side (visible always) */}
-          <a
-            href={calendar.url}
-            target="_blank"
-            rel="noreferrer"
+          {/* Download PDF button - generates PDF from your calendar data */}
+          <button
+            onClick={downloadPDF}
             className="download-btn"
-            onClick={(e) => e.stopPropagation()}
-            title={`Download ${displayTitle}`}
+            title={`Download ${displayTitle} PDF`}
           >
             <PdfIcon className="inline-block mr-1" />
             <span className="sr-only">Download PDF</span>
-          </a>
+          </button>
 
           <div className={`chev ${open ? 'open' : ''}`} aria-hidden>
             <ChevronRight />

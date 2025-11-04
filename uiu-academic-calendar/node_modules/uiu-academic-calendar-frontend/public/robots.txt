@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uiu-calendar-api.vercel.app/sitemap.xml
