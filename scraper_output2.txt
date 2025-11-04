@@ -1,0 +1,342 @@
+﻿Fetching calendar page...
+Found 6 unique PDF calendars
+Processing: Download PDF
+    Page 1: 49 lines
+  Raw extracted: 49 total lines
+  Extracted 30 events
+Processing: Download PDF
+    Page 1: 45 lines
+  Raw extracted: 45 total lines
+  Extracted 25 events
+Processing: Download PDF
+    Page 1: 49 lines
+  Raw extracted: 49 total lines
+
+  ≡ƒöì DEBUG Calendar 4 - Raw events (first 35):
+     1. United lnternational University
+     2. Revised Academic Calendar
+     3. Undergraduate Programs
+     4. Summer 2025 Trimester
+     5. Jul 19 - 21,2025 Sat - Mon Course Advising & Registration
+     6. Jul2l,2O25 Mon Last day of Cource Advising & Registration without Fine
+     7. Jul22,2025 Tue Classes Begin
+     8. Jul 30, 2025 Wed Last day to drop course(s) with 1007o adjustable refund only
+     9. Last day to apply for Grade Change of a course (if any) of Spring 2025 Trimester.
+    10. Jul 30,2025 Wed
+    11. Note: No application will be considered after the deadline.
+    12. Last day of Grade Submission for ProjecU Thesis (Final Year Design Project/ Internship/
+    13. {ug2,2025 Sat
+    14. Research Project
+    15. Aug 5, 2025 Tue
+    16. Last day of Course Advising & Registration with a Fine of Tk 500/-
+    17. Aug 6, 2025 Wed Last day of Grade Submission of lncomplete Grades of Spring 2025 Trimester by
+    18. concerned Department/Program OIfi ce
+    19. Aug 6, 2025 Wed Last day to drop course(s) with 507o adjustable refund only
+    20. l$ installment: A fine of Tk. 500/- will be imposed if 40% Tuition Fee and Trimester Fee is not
+    21. Aug I3,2025 Wed paid within this date.
+    22. Transportation fee, if applicable, must be paid in full (no installment)
+    23. Aug 16,2A25 Sat Holiday: Janmashtami
+    24. . Au921,2025 Thu Make-up class: Regular Saturday Classes
+    25. Sep 6, 2025 Sat Holiday: *Eirl-e-Miladunnabi
+    26. Sep T - 13,2025 Sun - Sat Mid-Term Exam
+    27. 2nd installment: A fine of Tk. 500/- will be imposed if 70% Tuition Fee and Trimester Fee is not
+    28. Sep 14,2025 Sun
+    29. paid within this date.
+    30. Sep 18.2025 Thu Make-up class: Regular Tuesday Classes
+    31. Sep 22,2025 Mon Last Day of Course Withdrawal
+    32. Sep 25, 2025 Thu Make-up class: Regular Saturday Classes
+    33. Sep 29 - Oct 3, 2025 Mon - Fri Holiday: Durga Puja (for students only)
+    34. Octl -2,2025 Wed - Thu Holiday: Durgn Puja
+    35. Oct 9, 2025 Thu Make-up classr Regular Wednesday Classes
+
+
+  Γ£à DEBUG Calendar 4 - Cleaned events:
+     1. Jul 19-21, 2025 Sat-Mon Course Advising & Registration
+     2. Jul 2, 2025 Mon Last day of Cource Advising & Registration without Fine
+     3. Jul 22, 2025 Tue Classes Begin
+     4. Jul 30, 2025 Wed Last day to drop course(s) with 100% adjustable refund only
+     5. Jul 30, 2025 Wed Note: No application will be considered after the deadline.
+     6. Aug 5, 2025 Tue Last day of Course Advising & Registration with a Fine of Tk. 500/
+     7. Aug 6, 2025 Wed Last day of Grade Submission of Incomplete Grades of Spring 2025 Trimester by concerned Department/Program Office
+     8. Aug 6, 2025 Wed Last day to drop course(s) with 50% adjustable refund only
+     9. Aug 16, 2025 Sat Holiday: Janmashtami
+    10. Sep 6, 2025 Sat Holiday: *Eid-e-Miladunnabi Sep T - 13, 2025 Sun-Sat Mid-Term Exam
+    11. Sep 14, 2025 Sun 2nd installment: A fine of Tk. 500/- will be imposed if 70% Tuition Fee and Trimester Fee is not
+    12. Sep 18, 2025 Thu Make-up classes: Regular Tuesday classes
+    13. Sep 22, 2025 Mon Last Day of Course Withdrawal
+    14. Sep 25, 2025 Thu Make-up classes: Regular Saturday classes
+    15. Sep 29 - Oct 3, 2025 Mon-Fri Holiday: Durga Puja (for students only) Octl -2, 2025 Wed-Thu Holiday: Durgn Puja
+    16. Oct 9, 2025 Thu Make-up classes: Regular Wednesday classes
+    17. Oc 12, 2025 Sun Oct 22-21, 2025 Wed-Fri Classes will remain suspended
+    18. Oct 25-31, 2025 Sat-Fri Final Exam
+    19. Nov 4, 2025 Tue Last day of Grade Submission (including Self-Study courses) Subject to the appearance ofthe moon.
+    20. Classes of Fall 2025 Trimester Begin: Nov 11, 2025 (Tue)
+    21. 1st.Admission Test: Sep 26, 2025 (Fri) - Last Date of Admission: Oct 12, 2025 (Sun)
+    22. 2nd Admission Test: Oct 31, 2025 (Fri) - Last Date of Admission: Nov 8, 2025 (Sat)
+
+  Extracted 22 events
+Processing: Download PDF
+    Page 1: 43 lines
+  Raw extracted: 43 total lines
+
+  ≡ƒöì DEBUG Calendar 4 - Raw events (first 35):
+     1. United lnternational University
+     2. Revised Academic Calendar
+     3. Graduate Prosrams
+     4. Summer 2025 Trimester
+     5. Ju,l2l-23,2025 Mon - Wed Course Advising & Regishation
+     6. Jul23,2025 Wed Last day of Course Advising & Registration without Fine
+     7. Ju[25,2025 Fri Classes Begin
+     8. Jul 30,2025 Wed Last day to drop course(s) with 100% adjustable refund only
+     9. Last day to apply for Grade Change of a course (if any) of Spring 2025 Trimester.
+    10. Jul 30,2025 Wed
+    11. Note: No application will be considered after the deadline.
+    12. Atg2,2025 Sat Last day of Grade Submission for Project/ Thesis
+    13. Aug 51 2025 Tue flolidai:'July Mass'Uprising Dpy.,
+    14. Last day of Course Advising & Registration with a Fine of Tlc 500/-
+    15. Aug 6,2025 Wed Last day of Grade Submission of lncomplete Grades of Spring 2025 Trimester by
+    16. concerned Department/Program Offi ce
+    17. Aug6,2025 Wed Last day to drop course(s) with 50% adjustable refund only
+    18. l$ installment: A fine of Tk. 500/- will be imposed if 40% Tuition Fee and Trimester Fee is
+    19. ttug13,2025 Wed not paid within this date.
+    20. Transportation fee, if applicable, must be paid in full (no installment)
+    21. Aug 16,2025 Sat IXolid ay.,..'J- ash tam i
+    22. :,Sep 6,2025 Sat Itroliday: *Eid-e-Miladunnabi
+    23. Sep5-13,2025 Fri - Sat Mid-Term Exam
+    24. 2nd installment: A fine of Tk. 500/- will be impose d if 70o/o Tuition Fee and Trimester Fee is
+    25. Sep 14,2025 Sun
+    26. not paid within this date.
+    27. Sep22,2025 Mon Last Day of Course Withdrawal
+    28. Sep29 ' 0ct'3,2025 Mo-n - Fri .Ilolidfl,r,'rDurga Puja (for students only)
+    29. Octl -2,2025 Wed - Thu ,floliday: Durga Puja
+    30. J installment: A fine of Tk. 500/- will be imposed if 100% Tuition Fee and Trimester Fee
+    31. Oct12,2025 Sun
+    32. is not paid within this date.
+    33. {}ct31-=NoY8J025 :I'ri - Sat final Exam
+    34. Nov 11,2025 Tue Last day of Grade Submission (including Self-Study courses)
+    35. Subject to the appearance of the moon.
+
+
+  Γ£à DEBUG Calendar 4 - Cleaned events:
+     1. Jul 2l-23, 2025 Mon-Wed Course Advising & Registration
+     2. Jul 23, 2025 Wed Last day of Course Advising & Registration without Fine
+     3. Jul 25, 2025 Fri Classes Begin
+     4. Jul 30, 2025 Wed Last day to drop course(s) with 100% adjustable refund only
+     5. Jul 30, 2025 Wed Note: No application will be considered after the deadline.
+     6. Aug 2, 2025 Sat Last day of Grade Submission for Project/ Thesis
+     7. Aug 5, 2025 Tue Holiday: July Mass Uprising Day, Last day of Course Advising & Registration with a Fine of Tk. 500/
+     8. Aug 6, 2025 Wed Last day of Grade Submission of Incomplete Grades of Spring 2025 Trimester by concerned Department/Program Office
+     9. Aug 6, 2025 Wed Last day to drop course(s) with 50% adjustable refund only
+    10. Aug 16, 2025 Sat Holiday: Janmashtami
+    11. Sep 6, 2025 Sat Holiday: *Eid-e-Miladunnabi Sep 5-13, 2025 Fri-Sat Mid-Term Exam
+    12. Sep 14, 2025 Sun 2nd installment: A fine of Tk. 500/- will be impose d if 70%/o Tuition Fee and Trimester Fee is
+    13. Sep 22, 2025 Mon Last Day of Course Withdrawal
+    14. Sep 29-Oct 3, 2025 Mon-Fri Holiday: Durga Puja (for students only)
+    15. Oct 12, 2025 Sun
+    16. Nov 11, 2025 Tue Last day of Grade Submission (including Self-Study courses) Subject to the appearance of the moon.
+    17. Classes of Fall 2025 Trimester Begin: Nov 14, 2025 (Fri)
+    18. l Admission Test: Sep 26, 2025 (Fri) - Last Date of Admission: Oct 12, 2025 (Sun)
+    19. 2nd Admission Test: Oct 31, 2025 (Fri) - Last Date of Admission: Nov 8, 2025 (Sat)
+
+  Extracted 19 events
+Processing: Download PDF
+    Page 1: 48 lines
+  Raw extracted: 48 total lines
+  Extracted 20 events
+Processing: Download PDF
+    Page 1: 52 lines
+  Raw extracted: 52 total lines
+  Extracted 34 events
+{
+  "count": 6,
+  "data": [
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2025/10/Academic-Calendar_253_Undergraduate-Programs.pdf",
+      "events": [
+        "Nov 8-10, 2025 Sat-Mon Course Advising & Registration",
+        "Nov 10, 2025 Mon Last day of Course Advising & Registration",
+        "Nov 11, 2025 Tue Classes Begin",
+        "Nov 14, 2025 Fri Orientation",
+        "Nov 16, 2025 Sun Last day to drop course(s) with 100% adjustable refund",
+        "Nov 19, 2025 Wed Note: No application will be considered after the deadline.",
+        "Nov 22, 2025 Sat Last day of Grade Submission for Project/ Thesis (Final Year Design Project)/ Internship)",
+        "Nov 24, 2025 Mon Make-up classes (Saturday) Last day of Course Advising & Registration with a Fine of Tk. 500/",
+        "Nov 26, 2025 Wed Last day of Grade Submission of Incomplete Grades of Summer 2025 Trimester by concerned Department/Program Office",
+        "Nov 26, 2025 Wed Last day to drop course(s) with 50% adjustable refund",
+        "Dec 08, 2025 Mon Make-up classes (Sunday)",
+        "Dec 10, 2025 Wed 1st installment *",
+        "Dec 15, 2025 Mon Make-up classes (Tuesday)",
+        "Dec 16, 2025 Tue Holiday: Victory Day",
+        "Dec 20-27, 2025 Sat-Sat Mid-Term Exam",
+        "Dec 25, 2025 Thu Holiday: Christmas Day",
+        "Jan 5, 2026 Mon Last Day of Course Withdrawal",
+        "Jan 11, 2026 Sun 2nd Installment **",
+        "Jan 12, 2026 Mon Make-up classes (Saturday)",
+        "Jan 23, 2026 Fri Holiday: Saraswati Puja",
+        "Jan 26, 2026 Mon Make-up classes (Wednesday)",
+        "Feb 4, 2026 Wed Holiday: Shab-e-Barat****",
+        "Feb 5-6, 2026 Thu-Fri Classes will remain suspended for Exam preparation",
+        "Feb 7-14, 2026 Sat-Sat Final Exam",
+        "Feb 8, 2026 Sun 3rd installment ***",
+        "Feb 17, 2026 Tue Last day of Grade Submission (including Self-Study courses)",
+        "Feb 21, 2026 Sat Holiday: Shaheed Day and International Mother Language Day",
+        "Feb 19-22, 2026 Thu-Sun Trimester break",
+        "1st Admission Test: Jan 2, 2026 (Fri) - Last Date of Admission: Jan 18, 2026 (Sun)",
+        "2nd Admission Test: Feb 6, 2026 (Fri) - Last Date of Admission: Feb 17, 2026 (Tue)"
+      ]
+    },
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2025/10/Academic-Calendar_253_Graduate_Program_Revised.pdf",
+      "events": [
+        "Nov 12-13, 2025 Wed-Thu Course Advising & Registration",
+        "Nov 13, 2025 Thu Last day of Course Advising & Registration",
+        "Nov 14, 2025 Fri Classes Begin",
+        "Nov 14, 2025 Fri Orientation",
+        "Nov 19, 2025 Wed Last day to drop course(s) with 100% adjustable refund",
+        "Nov 19, 2025 Wed Note: No application will be considered after the deadline.",
+        "Nov 22, 2025 Sat Last day of Grade Submission for Project/ Thesis Last day of Course Advising & Registration with a Fine of Tk. 500/",
+        "Nov 26, 2025 Wed Last day of Grade Submission of Incomplete Grades of Summer 2025 Trimester by concerned Department/Program Office",
+        "Nov 26, 2025 Wed Last day to drop course(s) with 50% adjustable refund",
+        "Dec 10, 2025 Wed 1st installment *",
+        "Dec 16, 2025 Tue Holiday: Victory Day",
+        "Dec 19-27, 2025 Fri-Sat Mid-Term Exam",
+        "Dec 25, 2025 Thu Holiday: Christmas Day",
+        "Jan 5, 2026 Mon Last Day of Course Withdrawal",
+        "Jan 11, 2026 Sun 2nd Installment **",
+        "Jan 23, 2026 Fri Holiday: Saraswati Puja",
+        "Feb 4, 2026 Wed Holiday: Shab-e-Barat****",
+        "Feb 5-6, 2026 Thu-Fri Classes will remain suspended for Exam preparation",
+        "Feb 6-14, 2026 Fri-Sat Final Exam",
+        "Feb 8, 2026 Sun 3rd installment ***",
+        "Feb 17, 2026 Tue Last day of Grade Submission (including Self-Study courses)",
+        "Feb 21, 2026 Sat Holiday: Shaheed Day and International Mother Language Day",
+        "Feb 19-22, 2026 Thu-Sun Trimester break",
+        "1st Admission Test: Jan 2, 2026 (Fri) - Last Date of Admission: Jan 18, 2026 (Sun)",
+        "2nd Admission Test: Feb 6, 2026 (Fri) - Last Date of Admission: Feb 17, 2026 (Tue)"
+      ]
+    },
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2025/07/Academic-Calendar_252_Undergraduate-Programs_Revised3.pdf",
+      "events": [
+        "Jul 19-21, 2025 Sat-Mon Course Advising & Registration",
+        "Jul 2, 2025 Mon Last day of Cource Advising & Registration without Fine",
+        "Jul 22, 2025 Tue Classes Begin",
+        "Jul 30, 2025 Wed Last day to drop course(s) with 100% adjustable refund only",
+        "Jul 30, 2025 Wed Note: No application will be considered after the deadline.",
+        "Aug 5, 2025 Tue Last day of Course Advising & Registration with a Fine of Tk. 500/",
+        "Aug 6, 2025 Wed Last day of Grade Submission of Incomplete Grades of Spring 2025 Trimester by concerned Department/Program Office",
+        "Aug 6, 2025 Wed Last day to drop course(s) with 50% adjustable refund only",
+        "Aug 16, 2025 Sat Holiday: Janmashtami",
+        "Sep 6, 2025 Sat Holiday: *Eid-e-Miladunnabi Sep T - 13, 2025 Sun-Sat Mid-Term Exam",
+        "Sep 14, 2025 Sun 2nd installment: A fine of Tk. 500/- will be imposed if 70% Tuition Fee and Trimester Fee is not",
+        "Sep 18, 2025 Thu Make-up classes: Regular Tuesday classes",
+        "Sep 22, 2025 Mon Last Day of Course Withdrawal",
+        "Sep 25, 2025 Thu Make-up classes: Regular Saturday classes",
+        "Sep 29 - Oct 3, 2025 Mon-Fri Holiday: Durga Puja (for students only) Octl -2, 2025 Wed-Thu Holiday: Durgn Puja",
+        "Oct 9, 2025 Thu Make-up classes: Regular Wednesday classes",
+        "Oc 12, 2025 Sun Oct 22-21, 2025 Wed-Fri Classes will remain suspended",
+        "Oct 25-31, 2025 Sat-Fri Final Exam",
+        "Nov 4, 2025 Tue Last day of Grade Submission (including Self-Study courses) Subject to the appearance ofthe moon.",
+        "Classes of Fall 2025 Trimester Begin: Nov 11, 2025 (Tue)",
+        "1st.Admission Test: Sep 26, 2025 (Fri) - Last Date of Admission: Oct 12, 2025 (Sun)",
+        "2nd Admission Test: Oct 31, 2025 (Fri) - Last Date of Admission: Nov 8, 2025 (Sat)"
+      ]
+    },
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2025/07/Academic-Calendar_252_Graduate-Programs_Revised3.pdf",
+      "events": [
+        "Jul 2l-23, 2025 Mon-Wed Course Advising & Registration",
+        "Jul 23, 2025 Wed Last day of Course Advising & Registration without Fine",
+        "Jul 25, 2025 Fri Classes Begin",
+        "Jul 30, 2025 Wed Last day to drop course(s) with 100% adjustable refund only",
+        "Jul 30, 2025 Wed Note: No application will be considered after the deadline.",
+        "Aug 2, 2025 Sat Last day of Grade Submission for Project/ Thesis",
+        "Aug 5, 2025 Tue Holiday: July Mass Uprising Day, Last day of Course Advising & Registration with a Fine of Tk. 500/",
+        "Aug 6, 2025 Wed Last day of Grade Submission of Incomplete Grades of Spring 2025 Trimester by concerned Department/Program Office",
+        "Aug 6, 2025 Wed Last day to drop course(s) with 50% adjustable refund only",
+        "Aug 16, 2025 Sat Holiday: Janmashtami",
+        "Sep 6, 2025 Sat Holiday: *Eid-e-Miladunnabi Sep 5-13, 2025 Fri-Sat Mid-Term Exam",
+        "Sep 14, 2025 Sun 2nd installment: A fine of Tk. 500/- will be impose d if 70%/o Tuition Fee and Trimester Fee is",
+        "Sep 22, 2025 Mon Last Day of Course Withdrawal",
+        "Sep 29-Oct 3, 2025 Mon-Fri Holiday: Durga Puja (for students only)",
+        "Oct 12, 2025 Sun",
+        "Nov 11, 2025 Tue Last day of Grade Submission (including Self-Study courses) Subject to the appearance of the moon.",
+        "Classes of Fall 2025 Trimester Begin: Nov 14, 2025 (Fri)",
+        "l Admission Test: Sep 26, 2025 (Fri) - Last Date of Admission: Oct 12, 2025 (Sun)",
+        "2nd Admission Test: Oct 31, 2025 (Fri) - Last Date of Admission: Nov 8, 2025 (Sat)"
+      ]
+    },
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2025/07/Academic-Calendar_253_Pharmacy_Revised2.pdf",
+      "events": [
+        "Aug 17-18, 2025 Sun-Mon Course Advising & Registration",
+        "Aug 18, 2025 Mon Last day of Course Advising & Registration without Fine",
+        "Aug 19, 2025 Tue Classes Begin",
+        "Sep 3, 2025 Wed Last day of Grade Submission of Incomplete Grades of Spring 2025",
+        "Sep 14, 2025 Sun Transportation fee, lf appllcable, must be paid in full (no",
+        "Sep 25, 2025 Thu Make-up classes: Regular Saturday classes",
+        "Sep 29 - Oct 3, 2025 Mon Fri Holiday: Durga Puja for students, only",
+        "Oct 11-22, 2025 Sat-Wed Mid-Term Exam",
+        "Oct 12, 2025 Sun 2nd installment: A fine of Tk. 500/- will be imposed if 50% Tuition Fee",
+        "Nov 3, 2025 Mon Last Day of Course Withdrawal",
+        "Nov 12, 2025 Wed Dec 11, 2025 Thu Make-up classes: Regular Tuesday classes",
+        "Dec 14, 2025 Sun and Semester Fee is not within this date",
+        "Dec 16, 2025 Tue Holiday: Victory Day",
+        "Dec 18-20, 2025 Thu-Sat Classes will remain suspended for exam preparation",
+        "Dec 2, 2025 -Jan 7, 2026 Sun-Wed Final Exam",
+        "Dec 25, 2025 Thu Holiday: Christmas Day",
+        "Classes of Spring 2026 Semester Begin: Feb 28, 2026 (Sat)",
+        "1st Admission Test: Sep 26, 2025 (Fri) - Last Date of Admission: Oct 12, 2025 (Sun)",
+        "2nd Admission Test: Oct 31, 2025 (Fri) - Last Date of Admission: Nov 8, 2025 (Sat)",
+        "3rd Admission Test: Dec 19, 2025 (Fri) - Last Date of Admission: Jan 4, 2026 (Sun)"
+      ]
+    },
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2025/02/Academic-Calendar_251_Pharmacy_Revised_22-May-2025-1.pdf",
+      "events": [
+        "Feb 18-20, 2025 Tue-Thu Course Advising & Registration",
+        "Feb 20, 2025 Thu Last day of Course Advising & Registration without Fine",
+        "Feb 21, 2025 Fri Holiday: Shaheed Diwas & International Mother language day",
+        "Feb 22, 2025 Sat Classes Begin",
+        "Feb 28, 2025 Fri Orientation Program: All Undergraduate & Graduate Programs at 3:00 PM",
+        "Mar 2, 2025 Sun Last day to drop course(s) with 100% adjustable refund only Last day to apply for Grade Change of a course (if any) of Fall 2024",
+        "Mar 2, 2025 Sun Semester. Note: No application will be considered after the deadline.",
+        "Mar 9, 2025 Sun Last day of Grade Submission of Incomplete Grades of Fall 2024 Semester",
+        "Mar 9, 2025 Sun by concerned Department/Program Office Last day to drop course(s) with 50% adjustable refund only",
+        "Mar 17, 2025 Mon Semester Fee is not paid within this date. 1st installment: A fine of Tk. 500/- will be imposed if 25% Tuition Fee and",
+        "Mar 26, 2025 Wed Holiday: Independence and National Day",
+        "Mar 27 - Apr 4, 2025 Thu-Fri Holiday: Jumatul-Widaa/ *Shab-e-QadΓÇÖr /*Eid-ul-FitΓÇÖr",
+        "Apr 13, 2025 Sun 2nd installment: A fine of Tk. 500/- will be imposed if 50% Tuition Fee and",
+        "Apr 14, 2025 Mon Holiday: Bangla New Year",
+        "Apr 19-30, 2025 Sat-Wed Mid-Term Exam",
+        "Apr 28 - May 19, 2025 Mon-Mon University remained closed due to unforeseen circumstances",
+        "May 1, 2025 Thu Holiday: May Day",
+        "May 11, 2025 Sun Holiday: *Buddha Purnima",
+        "May 20, 2025 Tue Classes resume",
+        "Jun 3-14, 2025 Tue-Sat Holiday: *Eid-ul-Azha",
+        "Jun 21-24, 2025 Sat-Tue Remaining Mid-term Exam",
+        "Jun 22, 2025 Sun 3rd installment: A fine of Tk. 500/- will be imposed if 75% Tuition Fee and",
+        "Jul 5, 2025 Sat Last Day of Course Withdrawal",
+        "Jul 5, 2025 Sat Regular Sunday classes",
+        "Jul 6, 2025 Sun Holiday: *Ashura",
+        "Jul 16, 2025 Wed 4th installment: A fine of Tk. 500/- will be imposed if 100% Tuition Fee and",
+        "Jul 24-26, 2025 Thu-Sat Classes will remain suspended for exam preparation",
+        "Jul 27 - Aug 9, 2025 Sun-Sat Final Exam",
+        "Aug 13, 2025 Wed Last day of Grade Submission",
+        "Aug 16, 2025 Sat Holiday: Janmashtami",
+        "Classes of Fall 2025 Semester Begin: Aug 19, 2025 (Tue)",
+        "1st Admission Test: Apr 25, 2025 (Fri) - Last Date of Admission: Jun 25, 2025 (Wed)",
+        "2nd Admission Test: Jun 20, 2025 (Fri) - Last Date of Admission: Jul 02, 2025 (Wed)",
+        "3rd Admission Test: Jul 11, 2025 (Fri) - Last Date of Admission: Jul 16, 2025 (Wed)"
+      ]
+    }
+  ]
+}
+
+Wrote web\calendars.json

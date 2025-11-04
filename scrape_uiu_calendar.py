@@ -1,274 +1,180 @@
-import requests
+﻿import requests
 from bs4 import BeautifulSoup
-import io
-import re
-from PyPDF2 import PdfReader
 import json
-from spellchecker import SpellChecker
-import os
+import fitz
 
 BASE_URL = "https://www.uiu.ac.bd/academics/calendar/"
 
-def extract_events(text):
-    """
-    Return a polished list of non-empty lines extracted from the PDF text.
+def get_title_from_url(url, link_text):
+    """Generate proper title from URL and link text."""
+    url_lower = url.lower()
+    
+    # Extract components
+    semester = ''
+    if '253' in url:
+        semester = '253'
+    elif '252' in url:
+        semester = '252'
+    elif '251' in url:
+        semester = '251'
+    
+    program = ''
+    if 'undergraduate' in url_lower:
+        program = 'Undergraduate Programs'
+    elif 'graduate' in url_lower:
+        program = 'Graduate Programs'
+    elif 'pharmacy' in url_lower:
+        program = 'Bachelor of Pharmacy'
+    
+    term = ''
+    if 'fall' in url_lower:
+        term = '(Fall 2025)'
+    elif 'spring' in url_lower:
+        term = '(Spring 2025)' if '2025' in url else '(Spring 2026)'
+    elif 'summer' in url_lower:
+        term = '(Summer 2025)'
+    
+    # Build title
+    parts = [f"Academic Calendar {semester}" if semester else "Academic Calendar"]
+    if program:
+        parts.append(program)
+    if term:
+        parts.append(term)
+    
+    return ' - '.join(parts)
 
-    - Splits text into lines
-    - Strips leading/trailing whitespace and bullets/dashes
-    - Collapses multiple internal whitespace to single spaces
-    - Filters out empty lines
-    Returns a list of strings (one per cleaned line).
-    """
-    if not text:
-        return []
-
-    # basic normalize: unify spaces and replace common bullets
-    text = text.replace('\u2022', '-')  # bullet
-    text = text.replace('\u2023', '-')
-    text = text.replace('\u00B7', '-')
-    text = text.replace('', '-')
-    text = text.replace('\u2013', '-')
-    text = text.replace('\u2014', '-')
-
-    raw_lines = [ln.rstrip() for ln in text.splitlines()]
-
-    # First pass: clean each line
-    cleaned = []
-    for raw in raw_lines:
-        line = raw.strip()
-        if not line:
-            continue
-        # collapse multiple whitespace into single space
-        line = re.sub(r"\s+", " ", line)
-        # remove stray leading/trailing bullets/dashes or punctuation
-        line = line.strip(" \t\u2022-–—•.\u00B7")
-        if line:
-            cleaned.append(line)
-
-    # Second pass: join hyphenated line breaks and obvious continuations
-    joined = []
-    i = 0
-    continuation_starters = {"and","or","for","to","by","the","a","an","concerned","of","with","fees","fee","students","last","lastday","last day"}
-    while i < len(cleaned):
-        cur = cleaned[i]
-        # fix digit splits like '1 6' -> '16' and '2 026' -> '2026'
-        cur = re.sub(r"(?<=\d)\s+(?=\d)", "", cur)
-
-        # if line ends with a hyphen, merge with next line (remove hyphen)
-        if cur.endswith('-') and i + 1 < len(cleaned):
-            nxt = cleaned[i+1]
-            merged = cur[:-1].rstrip() + nxt.lstrip()
-            cleaned[i+1] = merged
-            # don't push cur yet; skip to next which has been merged
+def extract_table_from_pdf(pdf_url):
+    """Extract events from PDF - robust parsing for messy PDFs."""
+    import re
+    
+    response = requests.get(pdf_url)
+    doc = fitz.open(stream=response.content, filetype="pdf")
+    page = doc[0]
+    
+    events = []
+    seen = set()
+    
+    # Try 1: Table extraction
+    tables = page.find_tables()
+    if tables:
+        for table in tables:
+            rows = table.extract()
+            for row in rows:
+                if row and len(row) >= 3:
+                    date = str(row[0] or '').strip()
+                    day = str(row[1] or '').strip()
+                    desc = str(row[2] or '').strip()
+                    
+                    if date and len(date) > 3 and re.match(r'^[A-Z][a-z]{2}', date):
+                        event = f"{date} {day} {desc}".strip()
+                        event_key = event.lower()
+                        if event_key not in seen:
+                            seen.add(event_key)
+                            events.append(event)
+    
+    # Try 2: Parse all text - get EVERYTHING with a date
+    text = page.get_text()
+    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    
+    # Skip header/footer
+    start_idx = 0
+    for i, line in enumerate(lines):
+        if re.search(r'(Jul|Aug|Sep|Oct|Nov|Dec|Jan|Feb|Mar|Apr|May|Jun)\s+\d', line, re.I):
+            start_idx = i
+            break
+    
+    i = start_idx
+    while i < len(lines):
+        line = lines[i]
+        
+        # Pattern 1: Date Day Description (all on one line)
+        match1 = re.match(r'([A-Z][a-z]{2}\s+\d{1,2}(?:\s*-\s*\d{1,2})?,?\s*\d{4})\s+([A-Z][a-z]{2}(?:\s*-\s*[A-Z][a-z]{2})?)\s+(.+)', line)
+        if match1:
+            event = f"{match1.group(1)} {match1.group(2)} {match1.group(3)}".strip()
+            event_key = event.lower()
+            if event_key not in seen and len(match1.group(3)) > 5:
+                seen.add(event_key)
+                events.append(event)
             i += 1
             continue
-
-        # if current line looks like it should continue with the next
-        if i + 1 < len(cleaned):
-            nxt = cleaned[i+1]
-            nxt_first = nxt.split()[0].lower() if nxt.split() else ''
-            # merge when current line doesn't end with strong punctuation and next starts with a small/continuation word
-            if not re.search(r"[\.\?!:]$", cur) and (nxt_first in continuation_starters or cur.split()[-1].lower() in continuation_starters or len(nxt.split())<4):
-                merged = cur + ' ' + nxt
-                cleaned[i+1] = merged
-                i += 1
+        
+        # Pattern 2: Date on its own line
+        date_match = re.match(r'^([A-Z][a-z]{2}\s+\d{1,2}(?:\s*-\s*\d{1,2})?,?\s*\d{4})$', line)
+        if date_match and i + 1 < len(lines):
+            date_part = date_match.group(1)
+            next_line = lines[i + 1]
+            
+            # Check if next line is a day
+            day_match = re.match(r'^([A-Z][a-z]{2}(?:\s*-\s*[A-Z][a-z]{2})?)$', next_line)
+            if day_match and i + 2 < len(lines):
+                day_part = day_match.group(1)
+                desc_part = lines[i + 2]
+                
+                # Collect multi-line descriptions
+                desc_lines = [desc_part]
+                j = i + 3
+                while j < len(lines) and j < i + 5:  # Look ahead up to 2 more lines
+                    next = lines[j]
+                    # Stop if we hit another date
+                    if re.match(r'^[A-Z][a-z]{2}\s+\d', next):
+                        break
+                    # Stop if too short or looks like day of week alone
+                    if len(next) < 5 or re.match(r'^[A-Z][a-z]{2}$', next):
+                        break
+                    desc_lines.append(next)
+                    j += 1
+                
+                full_desc = ' '.join(desc_lines).strip()
+                if len(full_desc) > 5:
+                    event = f"{date_part} {day_part} {full_desc}".strip()
+                    event_key = event.lower()
+                    if event_key not in seen:
+                        seen.add(event_key)
+                        events.append(event)
+                i = j
                 continue
-
-        joined.append(cur)
+        
         i += 1
+    
+    doc.close()
+    return events
 
-    # Final pass: small cosmetic fixes
-    final = []
-    for line in joined:
-        # remove duplicated spaces
-        line = re.sub(r"\s+", " ", line).strip()
-        # fix common OCR mistakes like 'Dec 0 8' already handled by digit merge above
-        # remove trailing commas or stray leading punctuation
-        line = line.strip(' ,;:\t')
-        # ensure proper spacing after commas
-        line = re.sub(r",\s*", ", ", line)
-    # normalize hyphen spacing when hyphen connects word parts (Make -up -> Make-up)
-        line = re.sub(r"(?<=\w)\s*-\s*(?=\w)", "-", line)
-
-        # attempt to repair common mid-word splits produced by PDFs/OCR
-        # Heuristic: if a space separates a long fragment and a short lowercase fragment
-        # (e.g. 'Banglade sh' or 'Prog ram'), join them, but avoid joining common
-        # valid short words like 'last day'. We use a small blacklist to reduce false joins.
-        blacklist = {
-            # common short words that must not be joined
-            'last', 'day', 'make', 'final', 'course', 'admission', 'first', 'second', 'third',
-            'classes', 'class', 'exam', 'holiday', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun',
-            'for', 'and', 'the', 'to', 'of', 'in', 'on', 'by', 'with',
-            # additional small words that frequently appear and should remain separate
-            'be', 'is', 'are', 'was', 'were', 'as', 'at', 'up', 'no', 'not', 'or',
-            'if', 'fee', 'due', 'per', 'but', 'too', 'all', 'any'
-        }
-
-        def _fix_mid_word_splits(s):
-            # replace occurrences of "<frag1> <frag2>" where frag1 is >=3 letters and frag2 is 1-3 lowercase letters
-            # and frag1.lower() not in blacklist
-            def _join(m):
-                a = m.group(1)
-                b = m.group(2)
-                if a.lower() in blacklist or b.lower() in blacklist:
-                    return a + ' ' + b
-                return a + b
-
-            return re.sub(r"([A-Za-z]{3,})\s+([a-z]{1,3})(?=\b)", _join, s)
-
-        line = _fix_mid_word_splits(line)
-
-        # Optional spellchecking pass to fix broken tokens (e.g. 'Banglade sh' -> 'Bangladesh')
-        # Use a lightweight spellchecker and a conservative whitelist/blacklist to avoid changing
-        # dates, abbreviations, program codes, or currency tokens.
-        try:
-            spell = SpellChecker(distance=1)
-
-            # whitelist of tokens we must not change (lowercase)
-            months = {m.lower() for m in (
-                ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])}
-            keep = set([
-                'uiu', 'rev', 'tk', 'bba', 'bs', 'bsc', 'bse', 'bsds', 'bsce', 'bsse', 'msc', 'mph',
-                'mpharm', 'pharm', 'office', 'department', 'program'
-            ]) | months
-
-            def _spell_fix(s):
-                # split keeping punctuation so we can process word tokens only
-                parts = re.split(r'(\W+)', s)
-                out_parts = []
-                for p in parts:
-                    if not p:
-                        continue
-                    # if token is purely alphabetic and reasonably long, consider correcting
-                    if p.isalpha() and len(p) >= 3:
-                        low = p.lower()
-                        # don't touch tokens that look like abbreviations (all upper) or in keep list
-                        if p.isupper() and len(p) <= 5:
-                            out_parts.append(p)
-                            continue
-                        if low in keep:
-                            out_parts.append(p)
-                            continue
-                        # don't touch tokens that are likely program codes or proper nouns if they contain mixed case
-                        # ask spellchecker for a correction
-                        cand = spell.correction(low)
-                        if cand and cand != low:
-                            # preserve capitalization
-                            if p[0].isupper():
-                                cand = cand.capitalize()
-                            out_parts.append(cand)
-                            continue
-                    out_parts.append(p)
-                return ''.join(out_parts)
-
-            line = _spell_fix(line)
-        except Exception:
-            # keep original line if spellchecker fails for any reason
-            pass
-
-        final.append(line)
-
-    return final
-
-
-def scrape_uiu_calendars():
+def main():
+    print("Fetching calendars...")
     response = requests.get(BASE_URL)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    pdf_links = soup.find_all("a", href=lambda x: x and x.endswith(".pdf"))
-    data = []
-
-    for link in pdf_links:
-        raw_title = link.text.strip() or "Download PDF"
-        url = link["href"]
-        if not url.startswith("http"):
-            url = "https://www.uiu.ac.bd" + url
-
-        print(f"📄 Extracting: {raw_title} -> {url}")
-
-        try:
-            pdf_resp = requests.get(url)
-            pdf_resp.raise_for_status()
-            pdf_file = io.BytesIO(pdf_resp.content)
-            reader = PdfReader(pdf_file)
-
-            text = ""
-            for page in reader.pages:
-                text += page.extract_text() or ""
-
-            events = extract_events(text)
-            # Use the PDF filename (decoded, without extension) as the calendar title
-            def title_from_url(url_str: str):
-                try:
-                    import urllib.parse
-                    path = urllib.parse.urlparse(url_str).path
-                    name = os.path.basename(path)
-                    name = urllib.parse.unquote(name)
-                    # remove .pdf and common prefixes/suffixes
-                    name = re.sub(r"\.pdf$", "", name, flags=re.I)
-                    # replace underscores/dashes with spaces
-                    name = re.sub(r"[_\-]+", " ", name)
-                    return name.strip()
-                except Exception:
-                    return raw_title
-
-            title = title_from_url(url)
-
-            data.append({
-                "title": title,
-                "url": url,
-                "events": events
-            })
-
-        except Exception as e:
-            print(f"⚠️ Error reading PDF {url}: {e}")
-            # still attempt to create a friendly title even if PDF failed to parse
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    calendars = []
+    seen = set()
+    
+    for link in soup.find_all('a', href=True):
+        href = link['href']
+        if href.endswith('.pdf') and 'calendar' in href.lower():
+            if not href.startswith('http'):
+                href = f"https://www.uiu.ac.bd{href}"
+            
+            if href in seen:
+                continue
+            seen.add(href)
+            
+            link_text = link.get_text(strip=True)
+            title = get_title_from_url(href, link_text)
+            print(f"Processing: {title}")
+            
             try:
-                # compute a fallback title from raw_title and URL
-                def make_friendly_title_on_error(raw_title: str, url_str: str):
-                    import re, urllib.parse
-                    if raw_title and not re.search(r"download\s*pdf", raw_title, re.I):
-                        return raw_title
-                    if url_str:
-                        try:
-                            path = urllib.parse.urlparse(url_str).path
-                            name = os.path.basename(path)
-                            name = urllib.parse.unquote(name).replace('_', ' ').replace('-', ' ').replace('.pdf', '')
-                            if name:
-                                return name[:100]
-                        except Exception:
-                            pass
-                    return raw_title or 'Academic Calendar'
+                events = extract_table_from_pdf(href)
+                calendars.append({'title': title, 'url': href, 'events': events})
+                print(f"  Found {len(events)} events")
+            except Exception as e:
+                print(f"  Error: {e}")
+                calendars.append({'title': title, 'url': href, 'events': []})
+    
+    output = {'count': len(calendars), 'data': calendars}
+    
+    with open('web/calendars.json', 'w', encoding='utf-8') as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+    
+    print(f"\nSaved {len(calendars)} calendars")
 
-                fallback_title = make_friendly_title_on_error(raw_title, url)
-            except Exception:
-                fallback_title = raw_title
-
-            data.append({
-                "title": fallback_title,
-                "url": url,
-                "events": []
-            })
-
-    return {
-        "count": len(data),
-        "data": data
-    }
-
-
-if __name__ == "__main__":
-    result = scrape_uiu_calendars()
-    # Print summary to stdout
-    print(json.dumps(result, indent=2, ensure_ascii=False))
-
-    # Also write a simplified JSON file for the web UI (array of calendars)
-    out_dir = os.path.join(os.path.dirname(__file__), 'web')
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, 'calendars.json')
-    try:
-        with open(out_path, 'w', encoding='utf-8') as f:
-            json.dump(result.get('data', []), f, ensure_ascii=False, indent=2)
-        print(f"Wrote {out_path}")
-    except Exception as e:
-        print(f"Failed to write web JSON: {e}")
+if __name__ == '__main__':
+    main()
