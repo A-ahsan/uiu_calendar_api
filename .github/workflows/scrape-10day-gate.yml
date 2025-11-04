@@ -46,7 +46,7 @@ jobs:
 
       - name: Run scraper
         if: ${{ steps.skip_check.outputs.skip == 'false' }}
-        run: python scrape_uiu_calendar.py
+        run: python scrape_uiu_calendar_html.py
 
       - name: Record timestamp
         if: ${{ steps.skip_check.outputs.skip == 'false' }}

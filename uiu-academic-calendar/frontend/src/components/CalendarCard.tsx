@@ -6,54 +6,37 @@ export default function CalendarCard({ calendar, logoUrl }: { calendar: Calendar
   const [open, setOpen] = useState(false)
   const firstLines = calendar.events?.slice(0, 4) || []
 
-  // parse events into header, rows (date-like), footer
+  // parse events into rows (date + description)
   const parseEvents = (events: string[] = []) => {
-    const months = '(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)'
-    const isDateLine = (s: string) => new RegExp(months, 'i').test(s) || /^\d{1,2}[A-Za-z]{0,2}\b/.test(s)
-
-    let header: string[] = []
     let rows: Array<{ date: string; desc: string }> = []
-    let footer: string[] = []
 
-    // find first and last indices of date-like lines
-    let firstIdx = -1
-    let lastIdx = -1
-    for (let i = 0; i < events.length; i++) {
-      if (isDateLine(events[i])) {
-        if (firstIdx === -1) firstIdx = i
-        lastIdx = i
+    for (const line of events) {
+      if (!line?.trim()) continue
+      
+      // Match date patterns like:
+      // "Nov 10, 2025 Mon" or "Dec 20 - 27, 2025 Sat-Sat" or "Feb 5 - 6, 2026 Thu - Fri"
+      // Pattern: Month Day(s), Year DayName(s) Description
+      const datePattern = /^([A-Z][a-z]{2}\s+\d{1,2}(?:\s*-\s*\d{1,2})?,\s*\d{4}\s+(?:[A-Z][a-z]{2}(?:\s*-\s*[A-Z][a-z]{2})?)?)\s+(.+)$/
+      const match = line.match(datePattern)
+      
+      if (match) {
+        const date = match[1].trim()
+        const desc = match[2].trim()
+        rows.push({ date, desc })
+      } else {
+        // Fallback: treat entire line as description if pattern doesn't match
+        rows.push({ date: '', desc: line.trim() })
       }
     }
 
-    if (firstIdx === -1) {
-      // no date-like lines: everything is header
-      header = events.slice()
-      return { header, rows, footer }
-    }
-
-    header = events.slice(0, firstIdx)
-    footer = events.slice(lastIdx + 1)
-
-    const middle = events.slice(firstIdx, lastIdx + 1)
-    for (const line of middle) {
-      // try to split date part and description
-      // split on two or more spaces or '  ' or ' - ' between date and text
-      let parts = line.split(/\s{2,}|\s-\s|\t/)
-      if (parts.length === 1) {
-        // try split after the year (e.g., 'Nov 8 - 10, 2025 Sat - Mon Course Advising & Registration')
-        const m = line.match(/^(.*?\d{4}[\)\,:\-]*)\s+(.*)$/)
-        if (m) parts = [m[1], m[2]]
-      }
-
-      const date = parts[0] || ''
-      const desc = parts.slice(1).join(' ') || ''
-      rows.push({ date: date.trim(), desc: desc.trim() || line })
-    }
-
-    return { header, rows, footer }
+    return { rows }
   }
 
-  const { header, rows, footer } = parseEvents(calendar.events || [])
+  const { rows } = parseEvents(calendar.events || [])
+  
+  // Use header and footer from calendar data (extracted from PDF)
+  const header = calendar.header ? [calendar.header] : []
+  const footer = calendar.footer || []
 
   // derive a friendly display title when the scraped `title` is generic like "Download PDF"
   const makeFriendlyTitle = (rawTitle: string, fallbackLines: string[], url?: string) => {
@@ -205,6 +188,20 @@ export default function CalendarCard({ calendar, logoUrl }: { calendar: Calendar
                 {footer.map((f, i) => (
                   <div key={`f-${i}`}>{f}</div>
                 ))}
+              </div>
+            )}
+
+            {/* notes section (additional information like payment details, etc.) */}
+            {calendar.notes && calendar.notes.length > 0 && (
+              <div className="mt-4 p-3 rounded-lg" style={{ background: 'rgba(246, 139, 31, 0.08)', border: '1px solid rgba(246, 139, 31, 0.2)' }}>
+                <h4 className="text-sm font-semibold mb-2" style={{ color: 'var(--primary)' }}>Important Notes</h4>
+                <div className="space-y-2">
+                  {calendar.notes.map((note, i) => (
+                    <div key={`note-${i}`} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {note}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>

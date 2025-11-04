@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd uiu-academic-calendar/frontend && npm install && npm run build",
+  "outputDirectory": "uiu-academic-calendar/frontend/dist",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

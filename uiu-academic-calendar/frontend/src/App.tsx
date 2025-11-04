@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ThemeToggle from './components/ThemeToggle'
-import CalendarList from './components/CalendarList'
 import MotivationalQuote from './components/MotivationalQuote'
+import CalendarList from './components/CalendarList'
 
 export type Calendar = {
   title: string
   url: string
+  header?: string
   events: string[]
+  footer?: string[]
+  notes?: string[]
 }
 
 export default function App() {
@@ -27,10 +30,13 @@ export default function App() {
       try {
         // Fetch from the static calendars.json file in the public folder
         const res = await axios.get('/calendars.json')
-        // The JSON file contains an array of calendars directly
         const payload = res.data
+        
+        // Handle both formats: array or { count, data }
         if (Array.isArray(payload)) {
           setCalendars(payload)
+        } else if (payload && Array.isArray(payload.data)) {
+          setCalendars(payload.data)
         } else {
           setCalendars([])
         }
