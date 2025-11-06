@@ -59,8 +59,24 @@ export default function App() {
             <h1 className="text-2xl font-semibold"><span className="site-title">UIU Academic Calendar</span></h1>
             <p className="text-sm text-gray-600 dark:text-gray-300">Official University Academic Calendars and Events</p>
           </div>
-          <div>
+          <div className="flex items-center gap-3">
             <ThemeToggle dark={dark} toggle={() => setDark(d => !d)} />
+
+            {/* Link to companion site - UIU Faculty Reviewer */}
+            <a
+              href="https://uiu-faculty-reviewer.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 hover:shadow-sm transition"
+              title="Open UIU Faculty Reviewer (new tab)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 3h6v6" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14L21 3" />
+              </svg>
+              <span>UIU Faculty Reviewer</span>
+            </a>
           </div>
         </header>
 
