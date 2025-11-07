@@ -96,3 +96,50 @@ if __name__ == '__main__':
         import traceback
         traceback.print_exc()
         exit(1)
+
+
+def test_normalize_text_examples():
+    """Simple unit tests for normalization logic used by the scrapers.
+
+    This mirrors the normalization implemented in the scrapers and ensures
+    common malformed tokens are corrected.
+    """
+    import re
+
+    def normalize_text(s: str) -> str:
+        if not isinstance(s, str):
+            return s
+        s = re.sub(r"(\*+)\s*(\d)(st|nd|rd|th)\s*installment", r"\1 \2\3 installment", s, flags=re.IGNORECASE)
+        s = re.sub(r"(\d)(st|nd|rd|th)\s*installment", r"\1\2 installment", s, flags=re.IGNORECASE)
+        s = re.sub(r"(\d)(st|nd|rd|th)(Installment)", r"\1\2 installment", s, flags=re.IGNORECASE)
+        s = re.sub(r"([a-z0-9])\.([A-Z])", r"\1. \2", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    cases = [
+        ("1stinstallment", "1st installment"),
+        ("2ndInstallment", "2nd installment"),
+        ("***3rdinstallment: A fine", "*** 3rd installment: A fine"),
+        ("date.Transportation fee", "date. Transportation fee"),
+        ("  multiple   spaces\nnew", "multiple spaces new"),
+    ]
+
+    for inp, expected in cases:
+        out = normalize_text(inp)
+        assert out == expected, f"normalize_text('{inp}') -> '{out}' (expected '{expected}')"
+
+
+if __name__ == '__main__':
+    # Run both tests when invoked directly
+    try:
+        test_calendar_data()
+        test_normalize_text_examples()
+        print('\n✅ Normalization tests passed')
+    except AssertionError as e:
+        print(f"\n❌ TEST FAILED: {e}")
+        exit(1)
+    except Exception as e:
+        print(f"\n❌ ERROR: {e}")
+        import traceback
+        traceback.print_exc()
+        exit(1)

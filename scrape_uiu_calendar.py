@@ -169,6 +169,38 @@ def main():
                 print(f"  Error: {e}")
                 calendars.append({'title': title, 'url': href, 'events': []})
     
+    # Normalize scraped text to avoid formatting issues (e.g. "1stinstallment")
+    import re
+
+    def normalize_text(s: str) -> str:
+        """Normalize common formatting issues from the source HTML/PDF.
+
+        - Ensure a space between ordinal and the word 'installment' (e.g. '1stinstallment' -> '1st installment')
+        - Ensure a space after grouped asterisks (e.g. '***3rd...' -> '*** 3rd ...')
+        - Insert a space after a period when sentences run together (e.g. 'date.Transportation' -> 'date. Transportation')
+        - Collapse excessive whitespace
+        """
+        if not isinstance(s, str):
+            return s
+        # Fix asterisks followed by installment token
+        s = re.sub(r"(\*+)\s*(\d)(st|nd|rd|th)\s*installment", r"\1 \2\3 installment", s, flags=re.IGNORECASE)
+        # Fix missing space between ordinal and 'installment'
+        s = re.sub(r"(\d)(st|nd|rd|th)\s*installment", r"\1\2 installment", s, flags=re.IGNORECASE)
+        # Fix cases like '2ndInstallment' (camel case)
+        s = re.sub(r"(\d)(st|nd|rd|th)(Installment)", r"\1\2 installment", s, flags=re.IGNORECASE)
+        # Add a space after period when next char is uppercase (run-on sentences)
+        s = re.sub(r"([a-z0-9])\.([A-Z])", r"\1. \2", s)
+        # Collapse whitespace
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    # Normalize calendar entries and optional notes
+    for cal in calendars:
+        if 'events' in cal and isinstance(cal['events'], list):
+            cal['events'] = [normalize_text(e) for e in cal['events']]
+        if 'notes' in cal and isinstance(cal['notes'], list):
+            cal['notes'] = [normalize_text(n) for n in cal['notes']]
+
     output = {'count': len(calendars), 'data': calendars}
     
     with open('web/calendars.json', 'w', encoding='utf-8') as f:

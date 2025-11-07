@@ -139,6 +139,25 @@ def main():
             print(f"📄 {link_text}")
             print(f"   {href}")
     
+    # Normalize scraped text to avoid formatting issues (e.g. "1stinstallment")
+    def normalize_text(s: str) -> str:
+        import re
+        if not isinstance(s, str):
+            return s
+        s = re.sub(r"(\*+)\s*(\d)(st|nd|rd|th)\s*installment", r"\1 \2\3 installment", s, flags=re.IGNORECASE)
+        s = re.sub(r"(\d)(st|nd|rd|th)\s*installment", r"\1\2 installment", s, flags=re.IGNORECASE)
+        s = re.sub(r"(\d)(st|nd|rd|th)(Installment)", r"\1\2 installment", s, flags=re.IGNORECASE)
+        s = re.sub(r"([a-z0-9])\.([A-Z])", r"\1. \2", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    # Apply normalization to events and notes
+    for cal in calendars:
+        if 'events' in cal:
+            cal['events'] = [normalize_text(e) for e in cal['events']]
+        if 'notes' in cal:
+            cal['notes'] = [normalize_text(n) for n in cal.get('notes', [])]
+
     # Save results
     output = {
         'count': len(calendars),
