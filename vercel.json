@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "find . -name package.json && [ -d uiu-academic-calendar/frontend ] && cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build || echo 'Missing directory - check structure'",
+  "buildCommand": "set -e && echo 'Checking directory...' && test -d uiu-academic-calendar/frontend && echo 'Directory exists' && cd uiu-academic-calendar/frontend && echo 'Installing...' && npm ci --legacy-peer-deps && echo 'Building...' && npm run build",
   "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": "echo 'Cache busted v6 - shortened command'",
+  "installCommand": "echo 'Cache busted v7 - explicit error handling'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
