@@ -2,7 +2,7 @@
   "version": 2,
   "buildCommand": "cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build",
   "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": "echo 'Skipping install - v9'",
+  "installCommand": "echo 'v10 - cache cleared'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
