@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "ls -la && pwd && cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build",
-  "outputDirectory": "uiu-academic-calendar/frontend/dist",
+  "buildCommand": "cd frontend && npm ci --legacy-peer-deps && npm run build",
+  "outputDirectory": "frontend/dist",
   "installCommand": "npm --version",
   "framework": null,
   "cleanUrls": true,
