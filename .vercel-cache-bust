@@ -1,0 +1,4 @@
+# Force cache clear
+# This file's modification will invalidate Vercel's build cache
+CACHE_BUST_VERSION=11
+TIMESTAMP=2025-11-11T22:47:00Z
