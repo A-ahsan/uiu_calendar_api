@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "npm install --prefix uiu-academic-calendar/frontend && npm run build --prefix uiu-academic-calendar/frontend",
+  "buildCommand": "cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build",
   "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": null,
+  "installCommand": "echo 'Using buildCommand for installation'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
