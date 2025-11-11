@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build",
+  "buildCommand": "ls -la && cd uiu-academic-calendar/frontend && pwd && npm ci --legacy-peer-deps && npm run build",
   "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": "echo 'Using buildCommand for installation'",
+  "installCommand": "echo 'Using buildCommand for installation - cache bust v2'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
