@@ -8,12 +8,15 @@ __pycache__/
 env/
 venv/
 ENV/
-node_modules/
 .DS_Store
 *.pyc
+*.py
 output.txt
 scraper_output*.txt
 scraper_test.txt
 temp_out.json
 page_source.html
 vercel.json.backup
+web/
+uiu-academic-calendar/backend/
+uiu-academic-calendar/node_modules/
