@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "rootDirectory": ".",
   "buildCommand": "ls -la uiu-academic-calendar/ && ls -la uiu-academic-calendar/frontend/ && cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build",
   "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": "echo 'Cache busted v3 - explicit root directory'",
+  "installCommand": "echo 'Cache busted v4 - removed invalid rootDirectory'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
