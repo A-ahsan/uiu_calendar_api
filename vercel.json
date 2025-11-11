@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "set -e && echo 'Checking directory...' && test -d uiu-academic-calendar/frontend && echo 'Directory exists' && cd uiu-academic-calendar/frontend && echo 'Installing...' && npm ci --legacy-peer-deps && echo 'Building...' && npm run build",
-  "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": "echo 'Cache busted v7 - explicit error handling'",
+  "buildCommand": "set -e && echo 'Setting up build...' && mkdir -p .vercel-build && cp -r uiu-academic-calendar/frontend/* .vercel-build/ 2>/dev/null || (echo 'Copy failed, trying direct build' && cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build) && cd .vercel-build && npm ci --legacy-peer-deps && npm run build",
+  "outputDirectory": ".vercel-build/dist",
+  "installCommand": "echo 'Cache busted v8 - build directory approach'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
