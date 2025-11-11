@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "ls -la uiu-academic-calendar/ && ls -la uiu-academic-calendar/frontend/ && cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build",
+  "buildCommand": "find . -name 'package.json' -type f | head -10 && if [ -d 'uiu-academic-calendar/frontend' ]; then echo 'Directory exists'; cd uiu-academic-calendar/frontend && npm ci --legacy-peer-deps && npm run build; else echo 'Directory missing - checking structure'; find . -type d -name '*academic*' -o -name '*frontend*'; fi",
   "outputDirectory": "uiu-academic-calendar/frontend/dist",
-  "installCommand": "echo 'Cache busted v4 - removed invalid rootDirectory'",
+  "installCommand": "echo 'Cache busted v5 - comprehensive directory check'",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
