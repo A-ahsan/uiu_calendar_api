@@ -1,6 +1,86 @@
 {
-  "count": 5,
+  "count": 7,
   "data": [
+    {
+      "title": "Spring 2026 Trimester Undergraduate Programs",
+      "url": "https://www.uiu.ac.bd/academics/calendar/",
+      "events": [
+        "Feb 23 - 25, 2026 Mon - Wed Course Advising & Registration",
+        "Feb 25, 2026 Wed Last day of Course Advising & Registration without Fine",
+        "Feb 28, 2026 Sat Classes Begin",
+        "Mar 2, 2026 Mon Last day to drop course(s) with 100% adjustable refund",
+        "Mar 7, 2026 Sat Last day to apply for Grade Change of a course (if any) of Fall 2025 Trimester. Note: No application will be considered after the deadline.",
+        "Mar 9, 2026 Mon Last day to drop course(s) with 50% adjustable refund",
+        "Mar 10, 2026 Tue Last day of Grade Submission for Project/ Thesis (Final Year Design Project/ Internship)",
+        "Mar 15, 2026 Sun Last day of Course Advising & Registration with a Fine of Tk. 500/-Last day of Grade Submission of Incomplete Grades of Fall 2025 Trimester by concerned Department/Program Office",
+        "Mar 17 – 27, 2026 Tue - Fri Holiday: Jumu’atul-Widaa/ Shab-e-Qad’r****/Eid-ul-Fit’r****/ Independence Day of Bangladesh",
+        "Apr 12, 2026 Sun Last date of 1st installment*",
+        "Apr 13, 2026 Mon Make-up class: Regular Tuesday Classes",
+        "Apr 14, 2026 Tue Holiday: Bangla New Year",
+        "Apr 18 - 24, 2026 Sat - Fri Mid-Term Exam",
+        "Apr 25, 2026 Sat Regular Tuesday Classes",
+        "Apr 26, 2026 Sun Regular Wednesday Classes",
+        "May 4, 2026 Mon Last Date for Course Withdrawal",
+        "May 12, 2026 Tue Last date of 2nd installment**",
+        "May 26 – Jun 05, 2026 Tue - Fri Holiday: Eid-ul-Adha****",
+        "June 14, 2026 Sun Last date of 3rd installment ***",
+        "June 18 - 20, 2026 Thu - Sat Classes will remain suspended for Exam preparation",
+        "June 21 - 28, 2026 Sun - Sun Final Exam",
+        "Jun 26, 2026 Fri Holiday: Ashura****",
+        "Jul 2, 2026 Thu Last date of Grade Submission (including Self-Study courses)"
+      ],
+      "source": "Direct HTML Table",
+      "notes": [
+        "* Last date of 1st installment: A fine of Tk. 500/- will be imposed if 40% Tuition Fee and Trimester Fee is not paid within this date.",
+        "For 252 and onwards students: Students are required to pay Tk. 20,000/- at the time of registration, and 40% of the remaining tuition and trimester fees must be paid by this date. Otherwise, a fine of Tk. 500/- will be imposed.",
+        "Transportation fee and/or Gymnasium Fee, if applicable, must be paid by this date in full (no installment)",
+        "** Last date of 2nd installment: A fine of Tk. 500/- will be imposed if 70% Tuition Fee and Trimester Fee is not paid within this date.",
+        "***Last date of 3rd installment: A fine of Tk. 500/- will be imposed if 100% Tuition Fee and Trimester Fee is not paid within this date.",
+        "**** Subject to the appearance of the moon.",
+        "UIU will remain closed on the day(s) declared as Government Holiday by the Govt. of the People's Republic of Bangladesh",
+        "Classes of Summer 2026 Trimester will Begin: Jul 7, 2026 (Tue)",
+        "Admission Test for Summer 2026 Trimester:1st Admission Test: Apr 24, 2026 (Fri) - Last Date of Admission: May 3, 2026 (Sun)2nd Admission Test: Jun 19, 2026 (Fri) - Last Date of Admission: Jul 1, 2026 (Wed)",
+        "NOTE: The schedule for other departmental academic activities will be announced by the respective Department or Program Office."
+      ]
+    },
+    {
+      "title": "Spring 2026 Trimester Graduate Programs",
+      "url": "https://www.uiu.ac.bd/academics/calendar/",
+      "events": [
+        "Feb 23 - 25, 2026 Mon - Wed Course Advising & Registration",
+        "Feb 25, 2026 Wed Last day of Course Advising & Registration without Fine",
+        "Feb 27, 2026 Fri Classes Begin",
+        "Mar 2, 2026 Mon Last day to drop course(s) with 100% adjustable refund",
+        "Mar 7, 2026 Sat Last day to apply for Grade Change of a course (if any) of Fall 2025 Trimester. Note: No application will be considered after the deadline.",
+        "Mar 9, 2026 Mon Last day to drop course(s) with 50% adjustable refund",
+        "Mar 10, 2026 Tue Last day of Grade Submission for Project/ Thesis (Final Year Design Project/ Internship)",
+        "Mar 15, 2026 Sun Last day of Course Advising & Registration with a Fine of Tk. 500/-Last day of Grade Submission of Incomplete Grades of Fall 2025 Trimester by concerned Department/Program Office",
+        "Mar 17 – 26, 2026 Tue - Thu Holiday: Jumu’atul-Widaa/ Shab-e-Qad’r****/Eid-ul-Fit’r****/ Independence Day of Bangladesh",
+        "Apr 12, 2026 Sun Last date of 1st installment*",
+        "Apr 14, 2026 Tue Holiday: Bangla New Year",
+        "Apr 17 - 25, 2026 Fri - Sat Mid-Term Exam",
+        "May 4, 2026 Mon Last Date for Course Withdrawal",
+        "May 12, 2026 Tue Last date of 2nd installment**",
+        "May 26 – Jun 04, 2026 Tue - Thu Holiday: Eid-ul-Adha****",
+        "June 14, 2026 Sun Last date of 3rd installment ***",
+        "June 19 - 29, 2026 Fri - Mon Final Exam",
+        "Jun 26, 2026 Fri Holiday: Ashura****",
+        "Jul 2, 2026 Thu Last date of Grade Submission (including Self-Study courses)"
+      ],
+      "source": "Direct HTML Table",
+      "notes": [
+        "*Last date of 1st installment: A fine of Tk. 500/- will be imposed if 40% Tuition Fee and Trimester Fee is not paid within this date.",
+        "For 252 and onwards students: Students are required to pay Tk. 20,000/- at the time of registration, and 40% of the remaining tuition and trimester fees must be paid by this date. Otherwise, a fine of Tk. 500/- will be imposed.",
+        "Transportation fee and/or Gymnasium Fee, if applicable, must be paid by this date in full (no installment)",
+        "** Last date of 2nd installment: A fine of Tk. 500/- will be imposed if 70% Tuition Fee and Trimester Fee is not paid within this date.",
+        "***Last date of 3rd installment: A fine of Tk. 500/- will be imposed if 100% Tuition Fee and Trimester Fee is not paid within this date.",
+        "**** Subject to the appearance of the moon.",
+        "• UIU will remain closed on the day(s) declared as Government Holiday by the Govt. of the People's Republic of Bangladesh",
+        "Classes of Summer 2026 Trimester Begin: Jul 10, 2026 (Fri)",
+        "Admission Test for Summer 2026 Trimester:1st Admission Test: Apr 24, 2026 (Fri) - Last Date of Admission: May 3, 2026 (Sun)2nd Admission Test: Jun 19, 2026 (Fri) - Last Date of Admission: Jul 1, 2026 (Wed)",
+        "NOTE: The schedule for make-up classes and other departmental academic activities will be announced by the respective Department or Program Office."
+      ]
+    },
     {
       "title": "Spring 2026 Semester Bachelor of Pharmacy (B. Pharm)",
       "url": "https://www.uiu.ac.bd/academics/calendar/",
@@ -209,6 +289,14 @@
     }
   ],
   "pdf_links": [
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/02/Academic-Calendar_261_Undergraduate-Programs_9.02.2026.pdf"
+    },
+    {
+      "title": "Download PDF",
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/02/Academic-Calendar_261_Graduate-Program__9.02.2026.pdf"
+    },
     {
       "title": "Download PDF",
       "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/01/Academic-Calendar_BPharm_261.pdf"
