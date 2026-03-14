@@ -2,7 +2,7 @@
   "count": 7,
   "data": [
     {
-      "title": "Spring 2026 Trimester Undergraduate Programs",
+      "title": "Spring 2026 Trimester Undergraduate Programs [Revised]",
       "url": "https://www.uiu.ac.bd/academics/calendar/",
       "events": [
         "Feb 23 - 25, 2026 Mon - Wed Course Advising & Registration",
@@ -12,8 +12,9 @@
         "Mar 7, 2026 Sat Last day to apply for Grade Change of a course (if any) of Fall 2025 Trimester. Note: No application will be considered after the deadline.",
         "Mar 9, 2026 Mon Last day to drop course(s) with 50% adjustable refund",
         "Mar 10, 2026 Tue Last day of Grade Submission for Project/ Thesis (Final Year Design Project/ Internship)",
-        "Mar 15, 2026 Sun Last day of Course Advising & Registration with a Fine of Tk. 500/-Last day of Grade Submission of Incomplete Grades of Fall 2025 Trimester by concerned Department/Program Office",
+        "Mar 15, 2026 Sun Last day of Course Advising & Registration with a Fine of Tk. 500/-",
         "Mar 17 – 27, 2026 Tue - Fri Holiday: Jumu’atul-Widaa/ Shab-e-Qad’r****/Eid-ul-Fit’r****/ Independence Day of Bangladesh",
+        "Mar 31, 2026 Tue Last day of Grade Submission of Incomplete Grades of Fall 2025 Trimester by concerned Department/Program Office",
         "Apr 12, 2026 Sun Last date of 1st installment*",
         "Apr 13, 2026 Mon Make-up class: Regular Tuesday Classes",
         "Apr 14, 2026 Tue Holiday: Bangla New Year",
@@ -44,7 +45,7 @@
       ]
     },
     {
-      "title": "Spring 2026 Trimester Graduate Programs",
+      "title": "Spring 2026 Trimester Graduate Programs [Revised]",
       "url": "https://www.uiu.ac.bd/academics/calendar/",
       "events": [
         "Feb 23 - 25, 2026 Mon - Wed Course Advising & Registration",
@@ -54,8 +55,9 @@
         "Mar 7, 2026 Sat Last day to apply for Grade Change of a course (if any) of Fall 2025 Trimester. Note: No application will be considered after the deadline.",
         "Mar 9, 2026 Mon Last day to drop course(s) with 50% adjustable refund",
         "Mar 10, 2026 Tue Last day of Grade Submission for Project/ Thesis (Final Year Design Project/ Internship)",
-        "Mar 15, 2026 Sun Last day of Course Advising & Registration with a Fine of Tk. 500/-Last day of Grade Submission of Incomplete Grades of Fall 2025 Trimester by concerned Department/Program Office",
+        "Mar 15, 2026 Sun Last day of Course Advising & Registration with a Fine of Tk. 500/-",
         "Mar 17 – 26, 2026 Tue - Thu Holiday: Jumu’atul-Widaa/ Shab-e-Qad’r****/Eid-ul-Fit’r****/ Independence Day of Bangladesh",
+        "Mar 31, 2026 Tue Last day of Grade Submission of Incomplete Grades of Fall 2025 Trimester by concerned Department/Program Office",
         "Apr 12, 2026 Sun Last date of 1st installment*",
         "Apr 14, 2026 Tue Holiday: Bangla New Year",
         "Apr 17 - 25, 2026 Fri - Sat Mid-Term Exam",
@@ -291,11 +293,11 @@
   "pdf_links": [
     {
       "title": "Download PDF",
-      "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/02/Academic-Calendar_261_Undergraduate-Programs_9.02.2026.pdf"
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/02/Academic-Calendar-UG-261-9.3.26.pdf"
     },
     {
       "title": "Download PDF",
-      "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/02/Academic-Calendar_261_Graduate-Program__9.02.2026.pdf"
+      "url": "https://www.uiu.ac.bd/wp-content/uploads/2026/02/Academic-Calendar-Grad-261-9.3.26.pdf"
     },
     {
       "title": "Download PDF",
