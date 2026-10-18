@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Icon } from './icons'
 
 const quotes = [
   // Education & Learning
@@ -143,19 +144,10 @@ export default function MotivationalQuote() {
   if (!show) return null
 
   return (
-    <div className="quote-popup">
-      <div className="quote-content">
-        <div className="quote-icon">💡</div>
-        <p className="quote-text">{quote}</p>
-        <button 
-          onClick={handleClose}
-          className="quote-close"
-          aria-label="Close quote"
-          title="Close"
-        >
-          ×
-        </button>
-      </div>
+    <div className="quote" role="status">
+      <span className="q-mark" aria-hidden="true">“</span>
+      <p>{quote}</p>
+      <button onClick={handleClose} aria-label="Close quote" title="Close"><Icon.close /></button>
     </div>
   )
 }

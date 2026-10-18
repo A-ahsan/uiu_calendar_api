@@ -12,7 +12,7 @@ def extract_semester_info(table):
     if details_elem:
         summary = details_elem.find('summary')
         if summary:
-            title = summary.get_text(strip=True)
+            title = text_of(summary)
             return title
     
     # Fallback: look for preceding headings
@@ -33,27 +33,40 @@ def clean_event_text(text):
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
 
+def text_of(el):
+    """Text of an element with a space between inner pieces, so words don't get glued together
+    (e.g. "Purnima****andMay Day", "Trimester:1stAdmission")."""
+    s = clean_event_text(el.get_text(' ', strip=True))
+    s = re.sub(r'\s+([,.;:)])', r'\1', s)          # "word ," -> "word,"
+    s = re.sub(r'\(\s+', '(', s)                   # "( Fri" -> "(Fri"
+    s = re.sub(r'(\d)\s+(st|nd|rd|th)\b', r'\1\2', s)  # "1 st" -> "1st"
+    return s
+
 def parse_table_to_events(table):
-    """Parse HTML table to list of events."""
+    """Parse HTML table to list of events.
+    Returns (events, items): events are "date day description" strings (kept for older code),
+    items keep the three columns separate so the website doesn't have to guess where the date ends."""
     events = []
+    items = []
     rows = table.find_all('tr')
-    
+
     # Don't skip any rows - UIU calendar tables don't have header rows
     for row in rows:
         cols = row.find_all(['td', 'th'])
         if len(cols) >= 3:
-            date = cols[0].get_text(strip=True)
-            day = cols[1].get_text(strip=True)
-            description = cols[2].get_text(strip=True)
-            
+            date = text_of(cols[0])
+            day = text_of(cols[1])
+            description = text_of(cols[2])
+
             # Only add if we have valid date and description
             if date and description and len(description) > 3:
                 # Check if date looks like a date (has numbers)
                 if re.search(r'\d', date):
                     event = clean_event_text(f"{date} {day} {description}")
                     events.append(event)
-    
-    return events
+                    items.append({'date': date, 'day': day, 'text': description})
+
+    return events, items
 
 def extract_additional_details(table):
     """Extract additional content like notes, payment info, etc. from calender-extra-details div."""
@@ -67,10 +80,8 @@ def extract_additional_details(table):
             # Extract all paragraphs
             paragraphs = extra_details_div.find_all('p')
             for p in paragraphs:
-                text = p.get_text(strip=True)
+                text = text_of(p)
                 if text:
-                    # Clean up the text
-                    text = clean_event_text(text)
                     details.append(text)
     
     return details
@@ -81,7 +92,8 @@ def main():
     print("="*60)
     print(f"\nFetching: {BASE_URL}")
     
-    response = requests.get(BASE_URL)
+    response = requests.get(BASE_URL, timeout=30, headers={'User-Agent': 'Mozilla/5.0 (UIU Academic Calendar updater)'})
+    response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
     
     # Find all tables
@@ -95,7 +107,7 @@ def main():
         title = extract_semester_info(table)
         
         # Parse events
-        events = parse_table_to_events(table)
+        events, items = parse_table_to_events(table)
         
         # Extract additional details (notes, payment info, etc.)
         additional_details = extract_additional_details(table)
@@ -110,6 +122,7 @@ def main():
                 'title': title,
                 'url': BASE_URL,
                 'events': events,
+                'items': items,
                 'source': 'Direct HTML Table'
             }
             
@@ -157,6 +170,13 @@ def main():
             cal['events'] = [normalize_text(e) for e in cal['events']]
         if 'notes' in cal:
             cal['notes'] = [normalize_text(n) for n in cal.get('notes', [])]
+        for it in cal.get('items', []):
+            it['text'] = normalize_text(it['text'])
+
+    # Never replace good data with an empty result (e.g. if uiu.ac.bd is down or its layout changes)
+    if not calendars:
+        print("\n✗ No calendars found on the page. Keeping the existing web/calendars.json.")
+        raise SystemExit(1)
 
     # Save results
     output = {
