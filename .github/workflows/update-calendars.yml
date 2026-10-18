@@ -1,11 +1,11 @@
 name: Update calendars
 
-# Checks uiu.ac.bd once a day and commits calendars.json only when something changed.
+# Checks uiu.ac.bd once a week and commits calendars.json only when something changed.
 # Uses GitHub's built-in token (no personal access token needed, nothing to expire).
 # Vercel deploys automatically from the commit.
 on:
   schedule:
-    - cron: '0 3 * * *' # daily, 9:00 AM Bangladesh time
+    - cron: '0 3 * * 6' # every Saturday, 9:00 AM Bangladesh time
   workflow_dispatch: # "Run workflow" button in the Actions tab
   push:
     branches: [main]

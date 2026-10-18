@@ -10,7 +10,7 @@ add the dates to your phone's calendar, or download a PDF.
 
 1. **Scraper** — `scrape_uiu_calendar_html.py` (repo root) reads the UIU calendar page and writes
    `web/calendars.json` (title, events, separate date/day/text items, notes).
-2. **Daily update** — `.github/workflows/update-calendars.yml` runs the scraper every day at 9 AM
+2. **Weekly update** — `.github/workflows/update-calendars.yml` runs the scraper every Saturday at 9 AM
    Bangladesh time, checks the result looks sane, and commits `calendars.json` only when something
    changed. It uses GitHub's built-in token, so there is no personal token to renew.
    Run it by hand from GitHub → Actions → "Update calendars" → Run workflow.

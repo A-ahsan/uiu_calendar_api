@@ -182,7 +182,7 @@ export default function App() {
 
       <footer className="site-footer">
         <div className="wrap">
-          <span>Data from <a href={SOURCE} target="_blank" rel="noopener noreferrer">uiu.ac.bd</a>, checked daily. Always confirm important dates with the university.</span>
+          <span>Data from <a href={SOURCE} target="_blank" rel="noopener noreferrer">uiu.ac.bd</a>, checked weekly. Always confirm important dates with the university.</span>
           <span>Created by ViPeR · <a href="https://uiu-faculty-reviewer.vercel.app/" target="_blank" rel="noopener noreferrer">UIU Faculty Reviewer</a></span>
         </div>
       </footer>
