@@ -1,0 +1,69 @@
+name: Update calendars
+
+# Checks uiu.ac.bd once a day and commits calendars.json only when something changed.
+# Uses GitHub's built-in token (no personal access token needed, nothing to expire).
+# Vercel deploys automatically from the commit.
+on:
+  schedule:
+    - cron: '0 3 * * *' # daily, 9:00 AM Bangladesh time
+  workflow_dispatch: # "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - scrape_uiu_calendar_html.py
+      - .github/workflows/update-calendars.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-calendars
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install scraper dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Scrape uiu.ac.bd
+        run: python scrape_uiu_calendar_html.py
+
+      - name: Check the result before publishing
+        run: |
+          python - <<'EOF'
+          import json, sys
+          d = json.load(open('web/calendars.json', encoding='utf-8'))
+          cals = d.get('data', [])
+          problems = []
+          if len(cals) < 3:
+              problems.append(f'only {len(cals)} calendars found')
+          for c in cals:
+              if len(c.get('events', [])) < 5:
+                  problems.append(f"'{c.get('title')}' has only {len(c.get('events', []))} events")
+          if problems:
+              print('Not publishing, the scrape looks wrong:', *problems, sep='\n - ')
+              sys.exit(1)
+          print(f'OK: {len(cals)} calendars, {sum(len(c["events"]) for c in cals)} events')
+          EOF
+
+      - name: Commit if changed
+        run: |
+          cp web/calendars.json uiu-academic-calendar/frontend/public/calendars.json
+          git add web/calendars.json uiu-academic-calendar/frontend/public/calendars.json
+          if git diff --cached --quiet; then
+            echo "No changes on uiu.ac.bd since the last update."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update calendars.json from uiu.ac.bd"
+          git push
