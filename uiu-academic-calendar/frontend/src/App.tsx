@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import ThemeToggle from './components/ThemeToggle'
 import MotivationalQuote from './components/MotivationalQuote'
 import NextUp from './components/NextUp'
+import SubscribeDialog from './components/SubscribeDialog'
 import Timeline from './components/Timeline'
 import { Icon } from './components/icons'
 import {
@@ -33,6 +34,7 @@ export default function App() {
   const [filter, setFilter] = useState<Category | 'all'>('all')
   const [showPast, setShowPast] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [subOpen, setSubOpen] = useState(false)
   const today = useMemo(() => startOfDay(new Date()), [])
 
   useEffect(() => {
@@ -149,7 +151,8 @@ export default function App() {
                 <p>{PROGRAMS.find(p => p.id === term.program)?.label}{term.program === 'pharm' ? ' (Bachelor of Pharmacy)' : ' Programs'} · {term.events.length} dates</p>
               </div>
               <div className="actions">
-                <button className="btn primary" onClick={() => downloadIcs(term)} title="Import into Google Calendar, Apple Calendar or Outlook"><Icon.calPlus />Add to calendar</button>
+                <button className="btn primary" onClick={() => setSubOpen(true)} title="Keeps your calendar updated when UIU changes a date"><Icon.calPlus />Subscribe</button>
+                <button className="btn" onClick={() => downloadIcs(term)} title="Download a one-time copy (.ics). It won't update by itself."><Icon.calPlus />Add once</button>
                 <button className="btn" onClick={pdf} disabled={busy}><Icon.pdf />{busy ? 'Preparing…' : 'PDF'}</button>
                 <a className="btn" href={SOURCE} target="_blank" rel="noopener noreferrer" title="Official UIU page"><Icon.link />Official</a>
               </div>
@@ -187,6 +190,7 @@ export default function App() {
         </div>
       </footer>
 
+      {subOpen && term && <SubscribeDialog term={term} onClose={() => setSubOpen(false)} />}
       <MotivationalQuote />
     </>
   )
