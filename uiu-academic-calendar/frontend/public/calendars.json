@@ -7,7 +7,7 @@
       "events": [
         "Oct 24 - 26, 2026 Sat-Mon Course Advising and Registration",
         "Oct 26, 2026 Mon Last day of Course Advising and Registration without Fine",
-        "Oct 25 - 26, 2026 Sun - Mon Open Day Orientation",
+        "Oct 26, 2026 Mon Open Day Orientation",
         "Oct 27, 2026 Tue Classes Begin",
         "Oct 31, 2026 Sat Last day to drop course(s) with 100% adjustable refund",
         "Nov 4, 2026 Wed Last day to apply for Grade Change of a course (if any) of Summer 2026 Trimester. Note: No application will be considered after the deadline.",
@@ -43,8 +43,8 @@
           "text": "Last day of Course Advising and Registration without Fine"
         },
         {
-          "date": "Oct 25 - 26, 2026",
-          "day": "Sun - Mon",
+          "date": "Oct 26, 2026",
+          "day": "Mon",
           "text": "Open Day Orientation"
         },
         {
